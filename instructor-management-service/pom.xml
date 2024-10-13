@@ -9,8 +9,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <artifactId>instructor-management-service</artifactId>
-    <packaging>war</packaging>
-    <name>instructor-management-service Maven Webapp</name>
+    <packaging>jar</packaging>
+    <name>instructor-management-service</name>
     <url>http://maven.apache.org</url>
 
 
