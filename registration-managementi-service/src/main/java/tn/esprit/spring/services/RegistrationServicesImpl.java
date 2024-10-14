@@ -45,7 +45,7 @@ public class RegistrationServicesImpl implements IRegistrationServices {
         return registrationRepository.save(registration);
     }
 
-    @Override
+   /* @Override
     public Registration assignRegistrationToCourse(Long numRegistration, Long numCourse) {
         Registration registration = registrationRepository.findById(numRegistration).orElse(null);
 
@@ -71,6 +71,32 @@ public class RegistrationServicesImpl implements IRegistrationServices {
         }
         return registrationRepository.save(registration);
     }
+*/
+   @Override
+   public Registration assignRegistrationToCourse(Long numRegistration, Long numCourse) {
+       Registration registration = registrationRepository.findById(numRegistration).orElse(null);
+
+       if (registration == null) {
+           log.error("Registration not found");
+           throw new IllegalArgumentException("Registration not found");
+       }
+
+       CourseDTO course = webClientBuilder
+               .build()
+               .get()
+               .uri(COURSE_SERVICE_URL + "/get/" + numCourse)
+               .retrieve()
+               .bodyToMono(CourseDTO.class)
+               .block();
+
+       if (course == null) {
+           log.error("Course with ID " + numCourse + " not found.");
+           throw new IllegalArgumentException("Course not found");
+       }
+
+       registration.setNumCourse(course.getNumCourse());
+       return registrationRepository.save(registration);
+   }
 
     @Transactional
     @Override
