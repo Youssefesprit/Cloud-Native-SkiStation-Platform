@@ -131,6 +131,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
         - ski-management-network
+    restart: unless-stopped
 
   # Instructor Service
   # Cette section configure le service instructor. Ce service dépend de la base de données "instructor-db".
@@ -149,6 +150,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Course Service
   # Cette section configure le service course. Ce service dépend de la base de données "course-db".
@@ -167,6 +169,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Subscription Service
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
@@ -185,12 +188,13 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Registration Service
   # Cette section configure le service registration. Ce service dépend de la base de données "registration-db".
   registration-service:
     container_name: registration-service
-    image: maleklabidi/registration-management-service:latest
+    image: maleklabidi/registration-managementi-service:latest
     ports:
       - "8086:8080"
     depends_on:
@@ -203,6 +207,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Piste Service
   # Cette section configure le service piste. Ce service dépend de la base de données "piste-db".
@@ -217,6 +222,7 @@ services:
       SPRING_DATASOURCE_PASSWORD: password
     networks:
       - ski-management-network
+    restart: unless-stopped
   #Discovery Service
   # Cette section configure le service discovery.
   discovery-service:
@@ -228,11 +234,12 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - ski-management-network
+    restart: unless-stopped
   #Gateway Service
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maleklabidi/gateway-service:latest
+    image: maleklabidi/api-gateway:latest
     ports:
       - "8080:8080"
     expose:
@@ -243,6 +250,7 @@ services:
       - discovery-service
     networks:
       - ski-management-network
+    restart: unless-stopped
 
 # Réseau pour les services
 networks:
