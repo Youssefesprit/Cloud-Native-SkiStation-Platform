@@ -33,5 +33,10 @@ public class CourseServicesImpl implements  ICourseServices{
         return courseRepository.findById(numCourse).orElse(null);
     }
 
+    @Override
+    public List<Course> retrieveCoursesByType(TypeCourse type) {
+        return courseRepository.findByType(type);
+    }
+
 
 }

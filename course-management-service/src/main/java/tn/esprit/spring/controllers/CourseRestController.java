@@ -42,4 +42,10 @@ public class CourseRestController {
         return courseServices.retrieveCourse(numCourse);
     }
 
+    @Operation(description = "Retrieve Courses by Type")
+    @GetMapping("/type/{type}")
+    public List<Course> getByType(@PathVariable("type") TypeCourse type){
+        return courseServices.retrieveCoursesByType(type);
+    }
+
 }

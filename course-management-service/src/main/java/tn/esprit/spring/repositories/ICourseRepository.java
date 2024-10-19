@@ -11,6 +11,6 @@ import java.util.List;
 
 public interface ICourseRepository extends JpaRepository<Course, Long> {
 
-
+List<Course>  findByType(TypeCourse type);
 
 }
