@@ -271,4 +271,3 @@ volumes:
     driver: local
   piste_db_data:
     driver: local
-    

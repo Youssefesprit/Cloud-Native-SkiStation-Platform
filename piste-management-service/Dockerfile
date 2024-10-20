@@ -8,7 +8,7 @@ WORKDIR /app
 ADD target/piste-management-service-0.0.1-SNAPSHOT.jar ipiste-management-service-0.0.1-SNAPSHOT.jar
 
 # Expose the port that the service will run on
-EXPOSE 8081
+EXPOSE 8089
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "piste-management-service-0.0.1-SNAPSHOT.jar"]
