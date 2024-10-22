@@ -11,15 +11,13 @@ services:
     container_name: instructor-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: instructordb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3307:3306"
     volumes:
       - instructor_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
   # MySQL Database for Skier Service
@@ -28,15 +26,13 @@ services:
     container_name: skier-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: skierdb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3308:3306"
     volumes:
       - skier_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
 
@@ -46,15 +42,13 @@ services:
     container_name: course-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: coursedb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3309:3306"
     volumes:
       - course_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
 
@@ -64,15 +58,13 @@ services:
     container_name: subscription-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: subscriptiondb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3310:3306"
     volumes:
       - subscription_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
 
@@ -82,15 +74,13 @@ services:
     container_name: registration-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: registrationdb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3311:3306"
     volumes:
       - registration_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
 
@@ -100,15 +90,13 @@ services:
     container_name: piste-db
     image: mysql:8.0
     environment:
-      MYSQL_ROOT_PASSWORD: rootpassword
       MYSQL_DATABASE: pistedb
-      MYSQL_USER: user
-      MYSQL_PASSWORD: password
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
     ports:
       - "3312:3306"
     volumes:
       - piste_db_data:/var/lib/mysql
-    restart: unless-stopped
+    restart: always
     networks:
       - ski-management-network
 
@@ -127,10 +115,12 @@ services:
       - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
         - ski-management-network
+    restart: unless-stopped
 
   # Instructor Service
   # Cette section configure le service instructor. Ce service dépend de la base de données "instructor-db".
@@ -145,10 +135,12 @@ services:
       - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://instructor-db:3306/instructordb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Course Service
   # Cette section configure le service course. Ce service dépend de la base de données "course-db".
@@ -158,15 +150,17 @@ services:
     ports:
       - "8082:8080"
     depends_on:
-      - course-db
-      - gateway-service
-      - discovery-service
+        - course-db
+        - gateway-service
+        - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://course-db:3306/coursedb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Subscription Service
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
@@ -181,28 +175,34 @@ services:
       - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://subscription-db:3306/subscriptiondb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Registration Service
   # Cette section configure le service registration. Ce service dépend de la base de données "registration-db".
   registration-service:
     container_name: registration-service
-    image: maleklabidi/registration-management-service:latest
+    image: maleklabidi/registration-managementi-service:latest
     ports:
       - "8086:8080"
     depends_on:
       - registration-db
       - gateway-service
       - discovery-service
+      - skier-service
+      - course-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://registration-db:3306/registrationdb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
 
   # Piste Service
   # Cette section configure le service piste. Ce service dépend de la base de données "piste-db".
@@ -211,12 +211,18 @@ services:
     image: maleklabidi/piste-management-service:latest
     ports:
       - "8087:8080"
+    depends_on:
+      - piste-db
+      - gateway-service
+      - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://piste-db:3306/pistedb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
   #Discovery Service
   # Cette section configure le service discovery.
   discovery-service:
@@ -228,11 +234,12 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
     networks:
       - ski-management-network
+    restart: unless-stopped
   #Gateway Service
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maleklabidi/gateway-service:latest
+    image: maleklabidi/api-gateway:latest
     ports:
       - "8080:8080"
     expose:
@@ -243,6 +250,7 @@ services:
       - discovery-service
     networks:
       - ski-management-network
+    restart: unless-stopped
 
 # Réseau pour les services
 networks:
