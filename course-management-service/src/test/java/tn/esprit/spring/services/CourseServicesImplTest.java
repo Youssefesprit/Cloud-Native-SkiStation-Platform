@@ -6,6 +6,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import tn.esprit.spring.entities.Course;
+import tn.esprit.spring.entities.TypeCourse;
 import tn.esprit.spring.repositories.ICourseRepository;
 
 import java.util.Arrays;
@@ -73,4 +74,18 @@ class CourseServicesImplTest {
         assertEquals(course, result);
         verify(courseRepository, times(1)).findById(numCourse);
     }
+
+    @Test
+    void retrieveCoursesByType() {
+        TypeCourse type = TypeCourse.COLLECTIVE_ADULT; //collectiveadult mel enum TypeCourse
+        List<Course> courseList = Arrays.asList(course);
+        when(courseRepository.findByType(type)).thenReturn(courseList);
+
+        List<Course> result = courseServices.retrieveCoursesByType(type);
+        assertNotNull(result);
+        assertEquals(1, result.size());
+        assertEquals(courseList, result);
+        verify(courseRepository, times(1)).findByType(type);
+    }
+
 }
