@@ -22,7 +22,7 @@
                 <version>3.2.1</version>
                 <configuration>
                     <to>
-                        <image>192.168.50.4:8081/repository/maven-releases/course-management-service:latest</image>
+                        <image>192.168.50.4:8082/docker-hosted/course-management-service:latest</image>
                     </to>
                 </configuration>
             </plugin>
