@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="8ffe5192-dfbd-437c-af50-c96ee251d9af" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/java/tn/esprit/spring/ApiGatewayApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/api-gateway/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/CourseManagmentApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/controllers/CourseRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/entities/Course.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/entities/Support.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/entities/TypeCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/repositories/ICourseRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/services/CourseServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/java/tn/esprit/spring/services/ICourseServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/course-management-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/java/tn/esprit/spring/DiscoveryServiceApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/discovery-service/src/test/java/tn/esprit/spring/AppTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/InstructorManagmentApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/configs/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/controllers/InstructorRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/dto/CourseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/entities/Instructor.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/repositories/IInstructorRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/services/IInstructorServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/java/tn/esprit/spring/services/InstructorServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/instructor-management-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/PisteManagementApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/configs/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/controllers/PisteRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/entities/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/entities/Piste.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/repositories/IPisteRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/services/IPisteServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/java/tn/esprit/spring/services/PisteServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/piste-management-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/RegistrationManagementApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/configs/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/controllers/RegistrationRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/dto/CourseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/dto/SkierDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/dto/Support.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/dto/TypeCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/entities/Registration.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/entities/Support.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/repositories/IRegistrationRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/services/IRegistrationServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/java/tn/esprit/spring/services/RegistrationServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/registration-managementi-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/SkierManagementApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/configs/WebClientConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/controllers/SkierRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/Color.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/CourseDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/PisteDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/RegistrationDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/SubscriptionDTO.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/Support.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/TypeCourse.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/dto/TypeSubscription.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/entities/Skier.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/repositories/ISkierRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/services/ISkierServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/java/tn/esprit/spring/services/SkierServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/skier-management-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/pom.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/SubscriptionManagementApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/configs/OpenAPIConfig.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/controllers/SubscriptionRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/entities/Subscription.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/entities/TypeSubscription.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/repositories/ISubscriptionRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/services/ISubscriptionServices.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/java/tn/esprit/spring/services/SubscriptionServicesImpl.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/subscription-management-service/src/test/java/tn/esprit/spring/GestionStationSkiApplicationTests.java" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/5SIM1-G6-Microservices-Gestion-Station-Ski" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2nO003rQetAbQABcmn5lhIILgzD" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.ApiGatewayApplication.executor": "Run",
+    "Spring Boot.CourseManagmentApplication.executor": "Run",
+    "Spring Boot.DiscoveryServiceApplication.executor": "Run",
+    "Spring Boot.InstructorManagmentApplication.executor": "Run",
+    "Spring Boot.PisteManagementApplication.executor": "Run",
+    "Spring Boot.RegistrationManagementApplication.executor": "Run",
+    "Spring Boot.SkierManagementApplication.executor": "Run",
+    "Spring Boot.SubscriptionManagementApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/henia/OneDrive/Bureau/5SIM1-G6-Microservices-Gestion-Station-Ski/5SIM1-G6-Microservices-Gestion-Station-Ski",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "run.configurations.included.in.services": "true",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunDashboard">
+    <option name="configurationTypes">
+      <set>
+        <option value="KtorApplicationConfigurationType" />
+        <option value="MicronautRunConfigurationType" />
+        <option value="QuarkusRunConfigurationType" />
+        <option value="SpringBootApplicationConfigurationType" />
+      </set>
+    </option>
+  </component>
+  <component name="RunManager" selected="Spring Boot.ApiGatewayApplication">
+    <configuration name="ApiGatewayApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="api-gateway" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.ApiGatewayApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="CourseManagmentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="course-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.CourseManagmentApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="DiscoveryServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <module name="discovery-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.DiscoveryServiceApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="InstructorManagmentApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="instructor-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.InstructorManagmentApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PisteManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="piste-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.PisteManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegistrationManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="registration-managementi-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.RegistrationManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SkierManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="skier-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.SkierManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SubscriptionManagementApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
+      <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
+      <module name="subscription-management-service" />
+      <option name="SPRING_BOOT_MAIN_CLASS" value="tn.esprit.spring.SubscriptionManagementApplication" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="8ffe5192-dfbd-437c-af50-c96ee251d9af" name="Changes" comment="" />
+      <created>1728828588860</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728828588860</updated>
+      <workItem from="1728828590096" duration="849000" />
+      <workItem from="1728836673424" duration="670000" />
+      <workItem from="1728837372553" duration="454000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
