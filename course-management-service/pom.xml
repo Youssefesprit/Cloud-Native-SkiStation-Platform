@@ -22,19 +22,28 @@
                 <version>3.2.1</version>
                 <configuration>
                     <to>
-                        <image>192.168.50.4:8082/course-management-service:latest</image> <!-- Nexus Docker registry image path -->
+                        <image>192.168.50.4:8082/course-management-service:latest</image> <!-- Nexus Docker registry path -->
                         <auth>
-                            <username>mrYoussef</username>
-                            <password>admin123</password>
+                            <username>${env.NEXUS_USERNAME}</username>
+                            <password>${env.NEXUS_PASSWORD}</password>
                         </auth>
                     </to>
-
-
-
+                    <container>
+                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
+                    </container>
                 </configuration>
+                <executions>
+                    <execution>
+                        <id>build-to-registry</id>
+                        <goals>
+                            <goal>build</goal> <!-- Use build goal for direct registry push -->
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
+
 
 
     <properties>
