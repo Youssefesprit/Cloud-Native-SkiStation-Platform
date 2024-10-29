@@ -5,7 +5,7 @@
         <groupId>tn.esprit.spring</groupId>
         <version>1.0</version>
     </parent>
-    <modelVersion/>
+    <modelVersion>4.0.0</modelVersion>
 
     <artifactId>registration-managementi-service</artifactId>
     <packaging>jar</packaging>
