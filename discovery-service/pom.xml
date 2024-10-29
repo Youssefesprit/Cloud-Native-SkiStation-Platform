@@ -13,6 +13,15 @@
     <name>discovery-service</name>
     <url>http://maven.apache.org</url>
 
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
     <properties>
         <java.version>17</java.version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -36,13 +45,12 @@
         </dependency>
 
     </dependencies>
-
-    <distributionManagement>
+    <repositories>
         <repository>
-            <id>deploymentRepo</id>
+            <id>maven-releases</id>
             <name>Nexus Repository</name>
             <url>http://192.168.50.4:8081/repository/maven-releases/</url>
         </repository>
-    </distributionManagement>
+    </repositories>
 
 </project>
