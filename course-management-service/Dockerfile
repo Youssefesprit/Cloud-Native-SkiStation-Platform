@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file into the container
-ADD target/course-management-service-0.0.1-SNAPSHOT.jar course-management-service-0.0.1-SNAPSHOT.jar
+COPY target/course-management-service-1.0.0.jar app.jar
 
 # Expose the port that the service will run on
-EXPOSE 8082
+EXPOSE 8084
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "course-management-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -106,7 +106,7 @@ services:
   # - Les variables d'environnement configurent l'URL et les identifiants de la base de données MySQL.
   skier-service:
     container_name: skier-service
-    image: maleklabidi/skier-management-service:latest
+    image: mryoussef/skier-management-service:latest
     ports:
       - "8088:8080"
     depends_on:
@@ -126,9 +126,9 @@ services:
   # Cette section configure le service instructor. Ce service dépend de la base de données "instructor-db".
   instructor-service:
     container_name: instructor-service
-    image: maleklabidi/instructor-management-service:latest
+    image: mryoussef/instructor-management-service:latest
     ports:
-      - "8081:8080"
+      - "8089:8080"
     depends_on:
       - instructor-db
       - gateway-service
@@ -146,9 +146,9 @@ services:
   # Cette section configure le service course. Ce service dépend de la base de données "course-db".
   course-service:
     container_name: course-service
-    image: maleklabidi/course-management-service:latest
+    image: mryoussef/course-management-service:latest
     ports:
-      - "8082:8080"
+      - "8084:8080"
     depends_on:
         - course-db
         - gateway-service
@@ -166,7 +166,7 @@ services:
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
   subscription-service:
     container_name: subscription-service
-    image: maleklabidi/subscription-management-service:latest
+    image: mryoussef/subscription-management-service:latest
     ports:
       - "8085:8080"
     depends_on:
@@ -186,7 +186,7 @@ services:
   # Cette section configure le service registration. Ce service dépend de la base de données "registration-db".
   registration-service:
     container_name: registration-service
-    image: maleklabidi/registration-managementi-service:latest
+    image: mryoussef/registration-managementi-service:latest
     ports:
       - "8086:8080"
     depends_on:
@@ -208,7 +208,7 @@ services:
   # Cette section configure le service piste. Ce service dépend de la base de données "piste-db".
   piste-service:
     container_name: piste-service
-    image: maleklabidi/piste-management-service:latest
+    image: mryoussef/piste-management-service:latest
     ports:
       - "8087:8080"
     depends_on:
@@ -227,7 +227,7 @@ services:
   # Cette section configure le service discovery.
   discovery-service:
     container_name: discovery-service
-    image: maleklabidi/discovery-service:latest
+    image: mryoussef/discovery-service:latest
     ports:
       - "8761:8761"
     environment:
@@ -239,7 +239,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maleklabidi/api-gateway:latest
+    image: mryoussef/api-gateway:latest
     ports:
       - "8080:8080"
     expose:
