@@ -14,42 +14,23 @@
 
     <name>course-management-service</name>
     <url>http://maven.apache.org</url>
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>com.google.cloud.tools</groupId>
-                <artifactId>jib-maven-plugin</artifactId>
-                <version>3.2.1</version>
-                <configuration>
-                    <to>
-                        <image>192.168.50.4:8082/course-management-service:latest</image> <!-- Nexus Docker registry path -->
-                        <auth>
-                            <username>mrYoussef</username>
-                            <password>admin123</password>
-                        </auth>
-                    </to>
-                    <container>
-                        <creationTime>USE_CURRENT_TIMESTAMP</creationTime>
-                    </container>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>build-to-registry</id>
-                        <goals>
-                            <goal>build</goal> <!-- Use build goal for direct registry push -->
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
-
 
 
     <properties>
         <java.version>17</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
+
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
+
+
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -90,13 +71,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <distributionManagement>
-        <repository>
-            <id>deploymentRepo</id>
-            <name>Nexus Repository</name>
-            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
-        </repository>
-    </distributionManagement>
+
 
 
 </project>

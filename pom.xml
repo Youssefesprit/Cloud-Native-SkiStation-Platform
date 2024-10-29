@@ -15,21 +15,29 @@
   <version>1.0-SNAPSHOT</version>
 
   <modules>
-    <module>instructor-management-service</module>
-    <module>course-management-service</module>
     <module>discovery-service</module>
-      <module>api-gateway</module>
-      <module>piste-management-service</module>
-      <module>subscription-management-service</module>
-      <module>skier-management-service</module>
-      <module>registration-managementi-service</module>
+    <module>api-gateway</module>
+    <module>course-management-service</module>
+    <module>instructor-management-service</module>
+    <module>piste-management-service</module>
+    <module>subscription-management-service</module>
+    <module>skier-management-service</module>
+    <module>registration-management-service</module>
   </modules>
 
   <name>Archetype - Microservices-Gestion-Station-Ski</name>
 
   <properties>
     <java.version>17</java.version>
+
   </properties>
+  <distributionManagement>
+    <repository>
+      <id>maven-releases</id>
+      <name>Nexus Repository</name>
+      <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+    </repository>
+  </distributionManagement>
 
   <dependencyManagement>
     <dependencies>
@@ -62,7 +70,7 @@
           </excludes>
         </configuration>
       </plugin>
-      <plugin>
+      <!-- <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
         <version>3.2.1</version>
@@ -82,15 +90,15 @@
             </goals>
           </execution>
         </executions>
-      </plugin>
+      </plugin> -->
     </plugins>
   </build>
-  <distributionManagement>
-    <repository>
-      <id>deploymentRepo</id>
-      <name>Nexus Repository</name>
-      <url>http://localhost:8081/repository/maven-releases/</url>
-    </repository>
-  </distributionManagement>
 
+  <repositories>
+    <repository>
+      <id>maven-releases</id>
+      <name>Nexus Repository</name>
+      <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+    </repository>
+  </repositories>
 </project>
