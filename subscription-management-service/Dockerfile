@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/subscription-management-service-1.0.0.jar app.jar
+COPY target/subscription-management-service-1.0.jar app.jar
 
 # Expose the port that the service will run on
 EXPOSE 8085
