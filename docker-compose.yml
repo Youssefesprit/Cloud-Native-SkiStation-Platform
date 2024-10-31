@@ -112,7 +112,6 @@ services:
     ports:
       - "8084:8080"
     depends_on:
-      - course-db
       - discovery-service
       - gateway-service
 
@@ -135,6 +134,10 @@ services:
       - skier-db
       - gateway-service
       - discovery-service
+      - course-service
+      - subscription-service
+      - registration-service
+      - piste-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
       SPRING_DATASOURCE_USERNAME: root
