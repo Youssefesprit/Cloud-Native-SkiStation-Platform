@@ -191,7 +191,6 @@ services:
       - registration-db
       - gateway-service
       - discovery-service
-      - skier-service
       - course-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://registration-db:3306/registrationdb
