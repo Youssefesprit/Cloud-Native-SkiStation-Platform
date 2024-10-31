@@ -7,6 +7,7 @@ services:
   # - Les variables d'environnement spécifient les informations d'identification de la base de données.
   # - Le port 3307 de l'hôte est mappé sur le port 3306 à l'intérieur du conteneur (port MySQL par défaut).
   # - Un volume est utilisé pour persister les données de la base.
+
   instructor-db:
     container_name: instructor-db
     image: mysql:8.0
