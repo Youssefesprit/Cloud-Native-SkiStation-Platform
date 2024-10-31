@@ -3,9 +3,10 @@
     <parent>
         <artifactId>Microservices-Gestion-Station-Ski</artifactId>
         <groupId>tn.esprit.spring</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
+
 
     <artifactId>subscription-management-service</artifactId>
     <packaging>jar</packaging>
@@ -14,8 +15,15 @@
     <url>http://maven.apache.org</url>
 
 
+    <distributionManagement>
+        <repository>
+            <id>maven-releases</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+        </repository>
+    </distributionManagement>
     <properties>
-        <java.version>1.8</java.version>
+        <java.version>17</java.version>
         <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
     </properties>
     <dependencies>
@@ -66,4 +74,12 @@
         </dependency>
 
     </dependencies>
+    <repositories>
+        <repository>
+            <id>maven-releases</id>
+            <name>Nexus Repository</name>
+            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+        </repository>
+    </repositories>
+
 </project>

@@ -1,5 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <artifactId>Microservices-Gestion-Station-Ski</artifactId>
         <groupId>tn.esprit.spring</groupId>
@@ -7,9 +7,10 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>instructor-management-service</artifactId>
+    <artifactId>registration-managementi-service</artifactId>
     <packaging>jar</packaging>
-    <name>instructor-management-service</name>
+
+    <name>registration-managementi-service</name>
     <url>http://maven.apache.org</url>
 
 
@@ -73,6 +74,7 @@
         </dependency>
 
     </dependencies>
+
     <repositories>
         <repository>
             <id>maven-releases</id>
@@ -80,6 +82,5 @@
             <url>http://192.168.50.4:8081/repository/maven-releases/</url>
         </repository>
     </repositories>
-
 
 </project>
