@@ -124,29 +124,6 @@ services:
       - ski-management-network
     restart: unless-stopped
 
-  # Skier Service
-  skier-service:
-    container_name: skier-service
-    image: 192.168.50.4:8082/docker-hosted/skier-management-service:1.0
-    ports:
-      - "8088:8080"
-    depends_on:
-      - skier-db
-      - gateway-service
-      - discovery-service
-      - course-service
-      - subscription-service
-      - registration-service
-      - piste-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-        - ski-management-network
-    restart: unless-stopped
-
   # Instructor Service
   instructor-service:
     container_name: instructor-service
@@ -159,6 +136,25 @@ services:
       - discovery-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://instructor-db:3306/instructordb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
+    networks:
+      - ski-management-network
+    restart: unless-stopped
+
+  # Piste Service
+  piste-service:
+    container_name: piste-service
+    image: 192.168.50.4:8082/docker-hosted/piste-management-service:1.0
+    ports:
+      - "8087:8080"
+    depends_on:
+      - piste-db
+      - gateway-service
+      - discovery-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://piste-db:3306/pistedb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD:
       SPRING_JPA_SHOW_SQL: "true"
@@ -206,25 +202,28 @@ services:
       - ski-management-network
     restart: unless-stopped
 
-  # Piste Service
-  piste-service:
-    container_name: piste-service
-    image: 192.168.50.4:8082/docker-hosted/piste-management-service:1.0
+  # Skier Service
+  skier-service:
+    container_name: skier-service
+    image: 192.168.50.4:8082/docker-hosted/skier-management-service:1.0
     ports:
-      - "8087:8080"
+      - "8088:8080"
     depends_on:
-      - piste-db
+      - skier-db
       - gateway-service
       - discovery-service
+      - course-service
+      - subscription-service
+      - registration-service
+      - piste-service
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://piste-db:3306/pistedb
+      SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD:
       SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
     restart: unless-stopped
-
 
 
 # Network configuration
