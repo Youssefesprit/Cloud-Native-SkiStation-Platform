@@ -7,7 +7,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>registration-managementi-service</artifactId>
+    <artifactId>registration-management-service</artifactId>
     <packaging>jar</packaging>
 
     <name>registration-managementi-service</name>
@@ -18,7 +18,7 @@
         <repository>
             <id>maven-releases</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+            <url>http://192.168.33.10:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
