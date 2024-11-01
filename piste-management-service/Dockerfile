@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file into the container
-ADD target/piste-management-service-0.0.1-SNAPSHOT.jar ipiste-management-service-0.0.1-SNAPSHOT.jar
+COPY target/piste-management-service-1.0.jar app.jar
 
 # Expose the port that the service will run on
-EXPOSE 8089
+EXPOSE 8087
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "piste-management-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "PisteManagement.jar"]

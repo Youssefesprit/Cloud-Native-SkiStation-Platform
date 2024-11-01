@@ -33,7 +33,6 @@ public class SkierServicesImpl implements ISkierServices {
     public List<Skier> retrieveAllSkiers() {
         return skierRepository.findAll();
     }
-
     @Override
     public Skier addSkier(Skier skier) {
         // Set subscriptionId based on the received subscription
@@ -48,7 +47,7 @@ public class SkierServicesImpl implements ISkierServices {
                 .bodyToMono(SubscriptionDTO.class)
                 .block();
 
-        if (subscriptionDTO != null) {
+        if (subscriptionDTO != null && subscriptionDTO.getTypeSub() != null) {
             //  i thik you need to update the Subscirption here so
             switch (subscriptionDTO.getTypeSub()) {
                 case ANNUAL:
@@ -155,18 +154,14 @@ public class SkierServicesImpl implements ISkierServices {
 
         return savedSkier;
     }
-
-
     @Override
     public void removeSkier(Long numSkier) {
         skierRepository.deleteById(numSkier);
     }
-
     @Override
     public Skier retrieveSkier(Long numSkier) {
         return skierRepository.findById(numSkier).orElse(null);
     }
-
     @Override
     public Skier assignSkierToPiste(Long numSkieur, Long numPiste) {
         Skier skier = skierRepository.findById(numSkieur).orElse(null);
