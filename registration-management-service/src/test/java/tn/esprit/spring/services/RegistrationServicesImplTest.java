@@ -16,15 +16,12 @@ import java.time.LocalDate;
 import java.util.Optional;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.times;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.anyString;
-
-class RegistrationServicesImplTest {
-
-
+public class RegistrationServicesImplTest {
     @InjectMocks
     private RegistrationServicesImpl registrationServices;
 
@@ -43,8 +40,7 @@ class RegistrationServicesImplTest {
     @Mock
     private WebClient webClient;
 
-    private SkierDTO skierDTO;
-    private CourseDTO courseDTO;
+
     private Registration registration;
 
     private final String SKIER_SERVICE_URL = "lb://skier-management-service/skier/";
@@ -190,7 +186,7 @@ class RegistrationServicesImplTest {
     /**
      * Test pour la méthode assignRegistrationToCourse avec une exception pour un cours non trouvé
      */
-  @Test
+    @Test
     public void testAssignRegistrationToCourse_CourseNotFound() {
         // Arrange
         when(registrationRepository.findById(1L)).thenReturn(Optional.of(registration));

@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copier le fichier JAR généré par Maven dans le conteneur
-COPY target/registration-managementi-service-1.0-SNAPSHOT.jar registration-managementi-service.jar
+COPY target/registration-managementi-service-1.0.jar registration-management-service.jar
 
 # Exposer le port 8086, car c'est le port où ton service écoutera
 EXPOSE 8086
