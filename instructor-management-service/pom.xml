@@ -71,8 +71,15 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>3.8.0</version> <!-- or a later version -->
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
+
     <repositories>
         <repository>
             <id>maven-releases</id>
