@@ -5,10 +5,10 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file into the container
-ADD target/subscription-management-service-0.0.1-SNAPSHOT.jar subscription-management-service-0.0.1-SNAPSHOT.jar
+ADD target/subscription-management-service-1.0.jar subscription-management-service.jar
 
 # Expose the port that the service will run on
 EXPOSE 8085
 
 # Run the application
-ENTRYPOINT ["java", "-jar", "subscription-management-service-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-jar", "subscription-management-service.jar"]
