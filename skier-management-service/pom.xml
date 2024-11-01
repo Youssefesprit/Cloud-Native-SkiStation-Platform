@@ -18,7 +18,7 @@
         <repository>
             <id>maven-releases</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+            <url>http://192.168.33.10:8081/repository/maven-releases/</url>
         </repository>
     </distributionManagement>
 
@@ -72,18 +72,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
         </dependency>
-        <dependency>
-            <groupId>org.mockito</groupId>
-            <artifactId>mockito-core</artifactId>
-            <version>3.12.4</version>
-            <scope>test</scope>
-        </dependency>
+
     </dependencies>
     <repositories>
         <repository>
             <id>maven-releases</id>
             <name>Nexus Repository</name>
-            <url>http://192.168.50.4:8081/repository/maven-releases/</url>
+            <url>http://192.168.33.10:8081/repository/maven-releases/</url>
         </repository>
     </repositories>
 
