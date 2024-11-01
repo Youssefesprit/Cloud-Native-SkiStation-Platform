@@ -77,152 +77,166 @@ services:
     networks:
       - ski-management-network
 
+  # MySQL Database for Course Service
+  course-db:
+    container_name: course-db
+    image: mysql:8.0
+    environment:
+      MYSQL_DATABASE: coursedb
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3309:3306"
+    volumes:
+      - course_db_data:/var/lib/mysql
+    restart: always
+    networks:
+      - ski-management-network
 
 
   # Discovery Service
-  discovery-service:
-    container_name: discovery-service
-    image: 192.168.50.4:8082/docker-hosted/discovery-service:1.0
-    ports:
-      - "8761:8761"
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Gateway Service
-  gateway-service:
-    container_name: gateway-service
-    image: 192.168.50.4:8082/docker-hosted/api-gateway:1.0
-    ports:
-      - "8080:8080"
-    environment:
-      SPRING_PROFILES_ACTIVE: docker
-    depends_on:
-      - discovery-service
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Course Service
-  course-service:
-    container_name: course-service
-    image: 192.168.50.4:8082/docker-hosted/course-management-service:1.0
-    ports:
-      - "8084:8080"
-    depends_on:
-      - discovery-service
-      - gateway-service
-
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://course-db:3306/coursedb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD: ''
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Instructor Service
-  instructor-service:
-    container_name: instructor-service
-    image: 192.168.50.4:8082/docker-hosted/instructor-management-service:1.0
-    ports:
-      - "8089:8080"
-    depends_on:
-      - instructor-db
-      - gateway-service
-      - discovery-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://instructor-db:3306/instructordb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Piste Service
-  piste-service:
-    container_name: piste-service
-    image: 192.168.50.4:8082/docker-hosted/piste-management-service:1.0
-    ports:
-      - "8087:8080"
-    depends_on:
-      - piste-db
-      - gateway-service
-      - discovery-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://piste-db:3306/pistedb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Subscription Service
-  subscription-service:
-    container_name: subscription-service
-    image: 192.168.50.4:8082/docker-hosted/subscription-management-service:1.0
-    ports:
-      - "8085:8080"
-    depends_on:
-      - subscription-db
-      - gateway-service
-      - discovery-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://subscription-db:3306/subscriptiondb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Registration Service
-  registration-service:
-    container_name: registration-service
-    image: 192.168.50.4:8082/docker-hosted/registration-management-service:1.0
-    ports:
-      - "8086:8080"
-    depends_on:
-      - registration-db
-      - gateway-service
-      - discovery-service
-      - course-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://registration-db:3306/registrationdb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Skier Service
-  skier-service:
-    container_name: skier-service
-    image: 192.168.50.4:8082/docker-hosted/skier-management-service:1.0
-    ports:
-      - "8088:8080"
-    depends_on:
-      - skier-db
-      - gateway-service
-      - discovery-service
-      - course-service
-      - subscription-service
-      - registration-service
-      - piste-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
+ # discovery-service:
+ #   container_name: discovery-service
+ #   image: 192.168.50.4:8082/docker-hosted/discovery-service:1.0
+ #   ports:
+ #     - "8761:8761"
+ #   environment:
+ #     SPRING_PROFILES_ACTIVE: docker
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Gateway Service
+ # gateway-service:
+ #   container_name: gateway-service
+ #   image: 192.168.50.4:8082/docker-hosted/api-gateway:1.0
+ #   ports:
+ #     - "8080:8080"
+ #   environment:
+ #     SPRING_PROFILES_ACTIVE: docker
+ #   depends_on:
+ #     - discovery-service
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Course Service
+ # course-service:
+ #   container_name: course-service
+ #   image: 192.168.50.4:8082/docker-hosted/course-management-service:1.0
+ #   ports:
+ #     - "8084:8080"
+ #   depends_on:
+ #     - discovery-service
+ #     - gateway-service
+#
+ #   environment:
+ #     SPRING_DATASOURCE_URL: jdbc:mysql://course-db:3306/coursedb
+ #     SPRING_DATASOURCE_USERNAME: root
+ #     SPRING_DATASOURCE_PASSWORD: ''
+ #     SPRING_JPA_SHOW_SQL: "true"
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Instructor Service
+ # instructor-service:
+ #   container_name: instructor-service
+ #   image: 192.168.50.4:8082/docker-hosted/instructor-management-service:1.0
+ #   ports:
+ #     - "8089:8080"
+ #   depends_on:
+ #     - instructor-db
+ #     - gateway-service
+ #     - discovery-service
+ #   environment:
+ #     SPRING_DATASOURCE_URL: jdbc:mysql://instructor-db:3306/instructordb
+ #     SPRING_DATASOURCE_USERNAME: root
+ #     SPRING_DATASOURCE_PASSWORD:
+ #     SPRING_JPA_SHOW_SQL: "true"
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Piste Service
+ # piste-service:
+ #   container_name: piste-service
+ #   image: 192.168.50.4:8082/docker-hosted/piste-management-service:1.0
+ #   ports:
+ #     - "8087:8080"
+ #   depends_on:
+ #     - piste-db
+ #     - gateway-service
+ #     - discovery-service
+ #   environment:
+ #     SPRING_DATASOURCE_URL: jdbc:mysql://piste-db:3306/pistedb
+ #     SPRING_DATASOURCE_USERNAME: root
+ #     SPRING_DATASOURCE_PASSWORD:
+ #     SPRING_JPA_SHOW_SQL: "true"
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Subscription Service
+ # subscription-service:
+ #   container_name: subscription-service
+ #   image: 192.168.50.4:8082/docker-hosted/subscription-management-service:1.0
+ #   ports:
+ #     - "8085:8080"
+ #   depends_on:
+ #     - subscription-db
+ #     - gateway-service
+ #     - discovery-service
+ #   environment:
+ #     SPRING_DATASOURCE_URL: jdbc:mysql://subscription-db:3306/subscriptiondb
+ #     SPRING_DATASOURCE_USERNAME: root
+ #     SPRING_DATASOURCE_PASSWORD:
+ #     SPRING_JPA_SHOW_SQL: "true"
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Registration Service
+ # registration-service:
+ #   container_name: registration-service
+ #   image: 192.168.50.4:8082/docker-hosted/registration-management-service:1.0
+ #   ports:
+ #     - "8086:8080"
+ #   depends_on:
+ #     - registration-db
+ #     - gateway-service
+ #     - discovery-service
+ #     - course-service
+ #   environment:
+ #     SPRING_DATASOURCE_URL: jdbc:mysql://registration-db:3306/registrationdb
+ #     SPRING_DATASOURCE_USERNAME: root
+ #     SPRING_DATASOURCE_PASSWORD:
+ #     SPRING_JPA_SHOW_SQL: "true"
+ #   networks:
+ #     - ski-management-network
+ #   restart: unless-stopped
+#
+ # # Skier Service
+ # skier-service:
+  #  container_name: skier-service
+  #  image: 192.168.50.4:8082/docker-hosted/skier-management-service:1.0
+  #  ports:
+  #    - "8088:8080"
+  #  depends_on:
+  #    - skier-db
+  #    - gateway-service
+  #    - discovery-service
+  #    - course-service
+  #    - subscription-service
+  #    - registration-service
+  #    - piste-service
+  #  environment:
+  #    SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
+  #    SPRING_DATASOURCE_USERNAME: root
+  #    SPRING_DATASOURCE_PASSWORD:
+  #    SPRING_JPA_SHOW_SQL: "true"
+  #  networks:
+  #    - ski-management-network
+  #  restart: unless-stopped
 
 
 # Network configuration
@@ -232,6 +246,8 @@ networks:
 
 # Volume configuration for database persistence
 volumes:
+  course-db_data:
+    driver: local
   skier_db_data:
     driver: local
   instructor_db_data:
