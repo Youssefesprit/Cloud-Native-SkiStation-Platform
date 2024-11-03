@@ -106,7 +106,7 @@ services:
   # - Les variables d'environnement configurent l'URL et les identifiants de la base de données MySQL.
   skier-service:
     container_name: skier-service
-    image: 192.168.33.10:8082/docker-hosted/skier-management-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/skier-management-service:1.0
     ports:
       - "8088:8080"
     depends_on:
@@ -126,7 +126,7 @@ services:
   # Cette section configure le service instructor. Ce service dépend de la base de données "instructor-db".
   instructor-service:
     container_name: instructor-service
-    image: 192.168.33.10:8082/docker-hosted/instructor-management-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/instructor-management-service:1.0
     ports:
       - "8089:8080"
     depends_on:
@@ -146,7 +146,7 @@ services:
   # Cette section configure le service course. Ce service dépend de la base de données "course-db".
   course-service:
     container_name: course-service
-    image: 192.168.33.10:8082/docker-hosted/course-management-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/course-management-service:1.0
     ports:
       - "8084:8080"
     depends_on:
@@ -166,7 +166,7 @@ services:
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
   subscription-service:
     container_name: subscription-service
-    image: 192.168.33.10:8082/docker-hosted/subscription-management-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/subscription-management-service:1.0
     ports:
       - "8085:8080"
     depends_on:
@@ -186,7 +186,7 @@ services:
   # Cette section configure le service registration. Ce service dépend de la base de données "registration-db".
   registration-service:
     container_name: registration-service
-    image: 192.168.33.10:8082/docker-hosted/registration-managementi-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/registration-managementi-service:1.0
     ports:
       - "8086:8080"
     depends_on:
@@ -208,7 +208,7 @@ services:
   # Cette section configure le service piste. Ce service dépend de la base de données "piste-db".
   piste-service:
     container_name: piste-service
-    image: 192.168.33.10:8082/docker-hosted/piste-management-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/piste-management-service:1.0
     ports:
       - "8087:8080"
     depends_on:
@@ -227,7 +227,7 @@ services:
   # Cette section configure le service discovery.
   discovery-service:
     container_name: discovery-service
-    image: 192.168.33.10:8082/docker-hosted/discovery-service:1.0
+    image: 192.168.33.10:8081/docker-hosted/discovery-service:1.0
     ports:
       - "8761:8761"
     environment:
@@ -239,7 +239,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: 192.168.33.10:8082/docker-hosted/api-gateway:1.0
+    image: 192.168.33.10:8081/docker-hosted/api-gateway:1.0
     ports:
       - "8080:8080"
     expose:
