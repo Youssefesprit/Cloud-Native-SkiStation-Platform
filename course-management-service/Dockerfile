@@ -8,7 +8,7 @@ WORKDIR /app
 COPY target/course-management-service-1.0.jar app.jar
 
 # Expose the port that the service will run on
-EXPOSE 8082
+EXPOSE 8084
 
 # Run the application
 ENTRYPOINT ["java", "-jar", "app.jar"]
