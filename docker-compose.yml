@@ -38,7 +38,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maherkr/api-gateway:latest
+    image: maherkr/gateway-service:latest
     ports:
       - "8080:8080"
     expose:
