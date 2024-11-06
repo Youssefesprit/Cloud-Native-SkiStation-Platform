@@ -1,8 +1,11 @@
+version: '3.8'
+
+services:
   # Subscription Service
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
   subscription-service:
     container_name: subscription-service
-    image: maherkr/subscription-management-service:latest   # Changed to maherkr
+    image: maherkr/subscription-management-service:latest
     ports:
       - "8085:8080"
     depends_on:
@@ -18,11 +21,24 @@
       - ski-management-network
     restart: unless-stopped
 
+  # Discovery Service
+  # Cette section configure le service discovery.
+  discovery-service:
+    container_name: discovery-service
+    image: maherkr/discovery-service:latest
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - ski-management-network
+    restart: unless-stopped
+
   # Gateway Service
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maherkr/api-gateway:latest   # Changed to maherkr
+    image: maherkr/api-gateway:latest
     ports:
       - "8080:8080"
     expose:
@@ -35,15 +51,28 @@
       - ski-management-network
     restart: unless-stopped
 
-  # Discovery Service
-  # Cette section configure le service discovery.
-  discovery-service:
-    container_name: discovery-service
-    image: maherkr/discovery-service:latest   # Changed to maherkr
-    ports:
-      - "8761:8761"
+  # MySQL Database for Subscription Service
+  # Cette section configure un conteneur pour la base de données MySQL du service "Subscription".
+  subscription-db:
+    container_name: subscription-db
+    image: mysql:8.0
     environment:
-      - SPRING_PROFILES_ACTIVE=docker
+      MYSQL_DATABASE: subscriptiondb
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3310:3306"
+    volumes:
+      - subscription_db_data:/var/lib/mysql
+    restart: always
     networks:
       - ski-management-network
-    restart: unless-stopped
+
+# Réseau pour les services
+networks:
+  ski-management-network:
+    driver: bridge
+
+# Définition des volumes pour persister les données des bases de données.
+volumes:
+  subscription_db_data:
+    driver: local
