@@ -5,7 +5,7 @@ services:
   # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
   subscription-service:
     container_name: subscription-service
-    image: maherkr/subscription-management-service:latest
+    image: maherkr/subscription-management-service:1.0.0
     ports:
       - "8085:8080"
     depends_on:
@@ -25,7 +25,7 @@ services:
   # Cette section configure le service discovery.
   discovery-service:
     container_name: discovery-service
-    image: maherkr/discovery-service:latest
+    image: maherkr/discovery-service:1.0.0
     ports:
       - "8761:8761"
     environment:
@@ -38,7 +38,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: maherkr/gateway-service:latest
+    image: maherkr/gateway-service:1.0.0
     ports:
       - "8080:8080"
     expose:
