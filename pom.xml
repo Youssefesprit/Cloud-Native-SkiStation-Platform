@@ -29,8 +29,11 @@
 
   <properties>
     <java.version>17</java.version>
-
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+    <maven-jar-plugin.version>3.1.1</maven-jar-plugin.version>
   </properties>
+
   <distributionManagement>
     <repository>
       <id>maven-releases</id>
@@ -70,7 +73,7 @@
           </excludes>
         </configuration>
       </plugin>
-      <!-- <plugin>
+       <!-- <plugin>
         <groupId>com.google.cloud.tools</groupId>
         <artifactId>jib-maven-plugin</artifactId>
         <version>3.2.1</version>
@@ -79,7 +82,7 @@
             <image>eclipse-temurin:17.0.4.1_1-jre</image>
           </from>
           <to>
-            <image>maleklabidi/${project.artifactId}</image>
+            <image>jouhaynacheikh/${project.artifactId}</image>
           </to>
         </configuration>
         <executions>
@@ -90,7 +93,7 @@
             </goals>
           </execution>
         </executions>
-      </plugin> -->
+      </plugin>-->
     </plugins>
   </build>
 

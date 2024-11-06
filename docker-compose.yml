@@ -1,4 +1,4 @@
-version: '3.8'
+#version: '3.8'
 
 services:
 
@@ -25,7 +25,7 @@ services:
   # Cette section configure le service discovery.
   discovery-service:
     container_name: discovery-service
-    image: jouhaynacheikh1/discovery-service:latest
+    image: jouhaynacheikh/discovery-service:1.0
     ports:
       - "8761:8761"
     environment:
@@ -38,7 +38,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: jouhaynacheikh1/api-gateway:latest
+    image: jouhaynacheikh/api-gateway:1.0
     ports:
       - "8080:8080"
     expose:
@@ -55,9 +55,9 @@ services:
   # Cette section configure le service course. Ce service dépend de la base de données "course-db".
   course-service:
     container_name: course-service
-    image: jouhaynacheikh1/course-management-service:latest
+    image: jouhaynacheikh/course-management-service:1.0
     ports:
-      - "8082:8080"
+      - "8084:8080"
     depends_on:
       - course-db
       - gateway-service
