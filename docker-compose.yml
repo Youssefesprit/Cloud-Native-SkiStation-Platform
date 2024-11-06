@@ -100,6 +100,35 @@ services:
     #networks:
       #- ski-management-network
 
+  #Discovery Service
+  # Cette section configure le service discovery.
+  discovery-service:
+    container_name: discovery-service
+    image: maleklabidi/discovery-service:1.0
+    ports:
+      - "8761:8761"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    networks:
+      - ski-management-network
+    restart: unless-stopped
+  #Gateway Service
+  # Cette section configure le service gateway.
+  gateway-service:
+    container_name: gateway-service
+    image: maleklabidi/api-gateway:1.0
+    ports:
+      - "8080:8080"
+    expose:
+      - "8080"
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - discovery-service
+    networks:
+      - ski-management-network
+    restart: unless-stopped
+
   # Skier Service
   # Cette section configure le service skier. Ce service dépend de la base de données "skier-db".
   # - Le port 8088 de l'hôte est mappé sur le port 8080 du conteneur.
@@ -122,6 +151,26 @@ services:
        # - ski-management-network
    # restart: unless-stopped
 
+  # Course Service
+  # Cette section configure le service course. Ce service dépend de la base de données "course-db".
+  course-service:
+    container_name: course-service
+    image: maleklabidi/course-management-service:1.0
+    ports:
+      - "8084:8080"
+    depends_on:
+        - course-db
+        - gateway-service
+        - discovery-service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://course-db:3306/coursedb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
+    networks:
+      - ski-management-network
+    restart: unless-stopped
+
   # Instructor Service
   # Cette section configure le service instructor. Ce service dépend de la base de données "instructor-db".
   instructor-service:
@@ -136,26 +185,6 @@ services:
       - course-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://instructor-db:3306/instructordb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-
-  # Course Service
-  # Cette section configure le service course. Ce service dépend de la base de données "course-db".
-  course-service:
-    container_name: course-service
-    image: maleklabidi/course-management-service:1.0
-    ports:
-      - "8084:8080"
-    depends_on:
-        - course-db
-        - gateway-service
-        - discovery-service
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://course-db:3306/coursedb
       SPRING_DATASOURCE_USERNAME: root
       SPRING_DATASOURCE_PASSWORD:
       SPRING_JPA_SHOW_SQL: "true"
@@ -224,34 +253,6 @@ services:
     #networks:
       #- ski-management-network
     #restart: unless-stopped
-  #Discovery Service
-  # Cette section configure le service discovery.
-  discovery-service:
-    container_name: discovery-service
-    image: maleklabidi/discovery-service:1.0
-    ports:
-      - "8761:8761"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - ski-management-network
-    restart: unless-stopped
-  #Gateway Service
-  # Cette section configure le service gateway.
-  gateway-service:
-    container_name: gateway-service
-    image: maleklabidi/api-gateway:1.0
-    ports:
-      - "8080:8080"
-    expose:
-      - "8080"
-    environment:
-      - SPRING_PROFILES_ACTIVE=docker
-    depends_on:
-      - discovery-service
-    networks:
-      - ski-management-network
-    restart: unless-stopped
 
 # Réseau pour les services
 networks:
