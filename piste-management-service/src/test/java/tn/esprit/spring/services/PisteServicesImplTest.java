@@ -12,8 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
@@ -29,71 +28,85 @@ public class PisteServicesImplTest {
 
     @BeforeEach
     void setUp() {
-        // Initialiser les objets mock
         MockitoAnnotations.openMocks(this);
 
         // Créer un objet Piste fictif pour les tests
         piste = new Piste();
         piste.setNumPiste(1L);
         piste.setNamePiste("Piste Test");
-        // vous pouvez initialiser d'autres champs ici
     }
 
     @Test
     public void testRetrieveAllPistes() {
-        // Configurer le comportement du mock
         when(pisteRepository.findAll()).thenReturn(Arrays.asList(piste));
-
-        // Appeler la méthode de service
         List<Piste> pistes = pisteServices.retrieveAllPistes();
 
-        // Vérifier que le résultat est correct
         assertNotNull(pistes);
         assertEquals(1, pistes.size());
         assertEquals(piste.getNamePiste(), pistes.get(0).getNamePiste());
 
-        // Vérifier que la méthode findAll du repository a été appelée une fois
         verify(pisteRepository, times(1)).findAll();
     }
 
     @Test
-    public void testAddPiste() {
-        // Configurer le mock pour sauvegarder une piste
+    public void testAddMultiplePistes() {
+        Piste piste2 = new Piste();
+        piste2.setNumPiste(2L);
+        piste2.setNamePiste("Piste Test 2");
+
+        when(pisteRepository.save(any(Piste.class))).thenReturn(piste, piste2);
+
+        Piste savedPiste1 = pisteServices.addPiste(piste);
+        Piste savedPiste2 = pisteServices.addPiste(piste2);
+
+        assertNotNull(savedPiste1);
+        assertNotNull(savedPiste2);
+        assertEquals("Piste Test", savedPiste1.getNamePiste());
+        assertEquals("Piste Test 2", savedPiste2.getNamePiste());
+
+        verify(pisteRepository, times(2)).save(any(Piste.class));
+    }
+
+    @Test
+    public void testRetrieveNonExistentPiste() {
+        when(pisteRepository.findById(2L)).thenReturn(Optional.empty());
+
+        Piste foundPiste = pisteServices.retrievePiste(2L);
+
+        assertNull(foundPiste);
+        verify(pisteRepository, times(1)).findById(2L);
+    }
+
+    @Test
+    public void testUpdatePiste() {
+        when(pisteRepository.findById(1L)).thenReturn(Optional.of(piste));
         when(pisteRepository.save(any(Piste.class))).thenReturn(piste);
 
-        // Appeler la méthode de service
-        Piste savedPiste = pisteServices.addPiste(piste);
+        piste.setNamePiste("Piste Updated");
+        Piste updatedPiste = pisteServices.addPiste(piste);
 
-        // Vérifier que l'objet retourné est correct
-        assertNotNull(savedPiste);
-        assertEquals(piste.getNamePiste(), savedPiste.getNamePiste());
-
-        // Vérifier que la méthode save du repository a été appelée une fois
+        assertEquals("Piste Updated", updatedPiste.getNamePiste());
         verify(pisteRepository, times(1)).save(any(Piste.class));
     }
 
     @Test
-    public void testRemovePiste() {
-        // Appeler la méthode de service pour supprimer une piste
-        pisteServices.removePiste(1L);
+    public void testRemoveNonExistentPiste() {
+        doNothing().when(pisteRepository).deleteById(2L);
 
-        // Vérifier que la méthode deleteById a été appelée avec le bon argument
-        verify(pisteRepository, times(1)).deleteById(1L);
+        pisteServices.removePiste(2L);
+
+        verify(pisteRepository, times(1)).deleteById(2L);
     }
 
     @Test
-    public void testRetrievePiste() {
-        // Configurer le mock pour retourner une piste
-        when(pisteRepository.findById(1L)).thenReturn(Optional.of(piste));
+    public void testRetrievePisteWithException() {
+        when(pisteRepository.findById(1L)).thenThrow(new RuntimeException("Database error"));
 
-        // Appeler la méthode de service
-        Piste foundPiste = pisteServices.retrievePiste(1L);
+        Exception exception = assertThrows(RuntimeException.class, () -> {
+            pisteServices.retrievePiste(1L);
+        });
 
-        // Vérifier que l'objet retourné est correct
-        assertNotNull(foundPiste);
-        assertEquals(piste.getNamePiste(), foundPiste.getNamePiste());
-
-        // Vérifier que la méthode findById a été appelée une fois
+        assertEquals("Database error", exception.getMessage());
         verify(pisteRepository, times(1)).findById(1L);
     }
 }
