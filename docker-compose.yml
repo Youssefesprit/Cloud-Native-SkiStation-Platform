@@ -1,25 +1,21 @@
 version: '3.8'
 
 services:
-  # Subscription Service
-  # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
-  subscription-service:
-    container_name: subscription-service
-    image: maherkr/subscription-management-service:1.0.0
-    ports:
-      - "8085:8080"
-    depends_on:
-      - subscription-db
-      - gateway-service
-      - discovery-service
+  # MySQL Database for Subscription Service
+  # Cette section configure un conteneur pour la base de données MySQL du service "Subscription".
+  subscription-db:
+    container_name: subscription-db
+    image: mysql:5.7
     environment:
-      SPRING_DATASOURCE_URL: jdbc:mysql://subscription-db:3306/subscriptiondb
-      SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:
-      SPRING_JPA_SHOW_SQL: "true"
+      MYSQL_DATABASE: subscriptiondb
+      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+    ports:
+      - "3310:3306"
+    volumes:
+      - subscription_db_data:/var/lib/mysql
+    restart: always
     networks:
       - ski-management-network
-    restart: unless-stopped
 
   # Discovery Service
   # Cette section configure le service discovery.
@@ -30,6 +26,8 @@ services:
       - "8761:8761"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
+    depends_on:
+      - subscription-db  # Ensure discovery service waits for the database
     networks:
       - ski-management-network
     restart: unless-stopped
@@ -46,26 +44,30 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - discovery-service
+      - discovery-service  # Ensure gateway waits for discovery service
     networks:
       - ski-management-network
     restart: unless-stopped
 
-  # MySQL Database for Subscription Service
-  # Cette section configure un conteneur pour la base de données MySQL du service "Subscription".
-  subscription-db:
-    container_name: subscription-db
-    image: mysql:5.7
-    environment:
-      MYSQL_DATABASE: subscriptiondb
-      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+  # Subscription Service
+  # Cette section configure le service subscription. Ce service dépend de la base de données "subscription-db".
+  subscription-service:
+    container_name: subscription-service
+    image: maherkr/subscription-management-service:1.0.0
     ports:
-      - "3310:3306"
-    volumes:
-      - subscription_db_data:/var/lib/mysql
-    restart: always
+      - "8085:8080"
+    depends_on:
+      - subscription-db  # Ensure subscription service waits for the database
+      - gateway-service   # Ensure subscription service waits for gateway service
+      - discovery-service # Ensure subscription service waits for discovery service
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://subscription-db:3306/subscriptiondb
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD:
+      SPRING_JPA_SHOW_SQL: "true"
     networks:
       - ski-management-network
+    restart: unless-stopped
 
 # Réseau pour les services
 networks:
