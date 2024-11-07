@@ -190,7 +190,7 @@ services:
   # Cette section configure le service registration. Ce service dépend de la base de données "registration-db".
   registration-service:
     container_name: registration-service
-    image: chaimasaadallah/registration-management-service:latest
+    image: chaimasaadallah/registration-management-service:1.0
     ports:
       - "8086:8080"
     depends_on:
