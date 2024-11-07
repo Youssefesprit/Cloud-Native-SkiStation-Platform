@@ -221,7 +221,7 @@ services:
   # Cette section configure le service discovery.
   discovery-service:
     container_name: discovery-service
-    image: chaimasaadallah/discovery-service:latest
+    image: chaimasaadallah/discovery-service
     ports:
       - "8761:8761"
     environment:
@@ -232,7 +232,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: chaimasaadallah/api-gateway:latest
+    image: chaimasaadallah/api-gateway
     ports:
       - "8080:8080"
     expose:
