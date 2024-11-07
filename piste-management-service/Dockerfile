@@ -5,7 +5,7 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 
 # Copy the JAR file into the container
-COPY target/piste-management-service-1.0.jar ppiste-management-service.jar
+COPY target/piste-management-service-1.0.jar piste-management-service.jar
 
 # Expose the port that the service will run on
 EXPOSE 8087
