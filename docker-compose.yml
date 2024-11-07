@@ -55,7 +55,7 @@ services:
   # Cette section configure un conteneur pour la base de données MySQL du service "Subscription".
   subscription-db:
     container_name: subscription-db
-    image: mysql:8.0
+    image: mysql:5.7
     environment:
       MYSQL_DATABASE: subscriptiondb
       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
