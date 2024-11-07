@@ -25,7 +25,7 @@ public class Course implements Serializable {
 	Long numCourse;
 	int level;
 	@Enumerated(EnumType.STRING)
-	TypeCourse typeCourse;
+	TypeCourse type;
 	@Enumerated(EnumType.STRING)
 	Support support;
 	Float price;
