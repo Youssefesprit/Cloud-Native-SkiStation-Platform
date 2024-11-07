@@ -96,7 +96,7 @@ services:
   # Discovery Service
   discovery-service:
     container_name: discovery-service
-    image: 192.168.227.128:8082/discovery-service:1.0
+    image: 192.168.50.4:8082/discovery-service:1.0
     ports:
       - "8761:8761"
     environment:
@@ -108,7 +108,7 @@ services:
   # Gateway Service
   gateway-service:
     container_name: gateway-service
-    image: 192.168.227.128:8082/api-gateway:1.0
+    image: 192.168.50.4:8082/api-gateway:1.0
     ports:
       - "8080:8080"
     environment:
@@ -179,7 +179,7 @@ services:
   # Subscription Service
   subscription-service:
     container_name: subscription-service
-    image: 192.168.227.128:8082/subscription-management-service:1.0
+    image: 192.168.50.4:8082/subscription-management-service:1.0
     ports:
       - "8085:8080"
     depends_on:
@@ -218,7 +218,7 @@ services:
  # Skier Service
   skier-service:
    container_name: skier-service
-   image: 192.168.227.128:8082/skier-management-service:1.0
+   image: 192.168.50.4:8082/skier-management-service:1.0
    ports:
      - "8088:8080"
    depends_on:
