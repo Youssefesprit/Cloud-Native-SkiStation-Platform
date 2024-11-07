@@ -232,7 +232,7 @@ services:
   # Cette section configure le service gateway.
   gateway-service:
     container_name: gateway-service
-    image: chaimasaadallah/gateway-service:1.0
+    image: chaimasaadallah/api-gateway:1.0
     ports:
       - "8080:8080"
     expose:
