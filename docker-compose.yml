@@ -188,7 +188,6 @@ services:
       - subscription-service
       - course-service
       - piste-service
-      - registration-service
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://skier-db:3306/skierdb
       SPRING_DATASOURCE_USERNAME: root
