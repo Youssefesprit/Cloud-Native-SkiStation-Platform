@@ -119,14 +119,14 @@ pipeline {
     }
     success { 
         emailext( 
-            to: 'team@example.com', 
+            to: 'yousseffarhat818@gmail.com', 
             subject: "Stage Success: Build stage completed", 
             body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully."
         )
     } 
     failure { 
         emailext( 
-            to: 'team@example.com', 
+            to: 'yousseffarhat818@gmail.com', 
             subject: "Stage Failed: Build stage failed", 
             body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Check ${env.BUILD_URL}"
         )
