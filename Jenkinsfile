@@ -25,13 +25,13 @@ pipeline {
                 sh 'mvn clean compile'
             }
         }
-       /*   stage('SonarQube Analysis') {
+       stage('SonarQube Analysis') {
             steps {
                 withSonarQubeEnv('sonarqube') {
                     sh 'mvn sonar:sonar -Dsonar.login=$SONAR_TOKEN'
                 }
             }
-        }*/
+        }
         stage('Mockito/JUnit') {
             steps {
                 echo 'Running tests for instructor-management-service...'
@@ -48,84 +48,6 @@ pipeline {
             }
         }
       
-
-       /* stage('Run Docker Compose') {
-            steps {
-                script {
-                    echo "Running Docker Compose"
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USERNAME', passwordVariable: 'DOCKER_PASSWORD')]) {
-                        sh 'docker compose up -d'
-                    }
-                }
-            }
-        }
-        */
-         /* stage('Clean Existing Docker Images') {
-            steps {
-                script {
-                    for (service in SERVICES.split(",")) {
-                        def imageName = "${DOCKER_REPO}/${service}:1.0"
-                        def existingImage = sh(script: "docker images -q ${imageName}", returnStdout: true).trim()
-                        
-                        if (existingImage) {
-                            echo "Removing existing image: ${imageName}"
-                            sh "docker rmi -f ${imageName}"
-                            sh "docker image prune -f"  // Force prune to remove dangling images
-                        } else {
-                            echo "No existing image found for: ${imageName}"
-                        }
-                    }
-                }
-            }
-        }*/
-        
-       /* stage('Build Docker Images') {
-            steps {
-                script {
-                    for (service in SERVICES.split(",")) {
-                        echo "Building Docker image for: ${service}"
-                        sh "docker build -t ${service}:1.0 ./${service}"
-                    }
-                }
-            }
-        }
-        
-        stage('Docker Login') {
-            steps {
-                withCredentials([usernamePassword(credentialsId: 'nexus-credentials', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
-                    sh "echo $DOCKER_PASSWORD | docker login $DOCKER_REPO --username $DOCKER_USERNAME --password-stdin"
-                }
-            }
-        }
-        
-        stage('Push Docker Images to Nexus') {
-            steps {
-                script {
-                    for (service in SERVICES.split(",")) {
-                        echo "Pushing Docker image: ${service}"
-                        sh "docker tag ${service}:1.0 ${DOCKER_REPO}/${service}:1.0"
-                        sh "docker push ${DOCKER_REPO}/${service}:1.0"
-                    }
-                }
-            }
-        }*/
-              /* stage('Build and Push Gateway Service Image') {
-                    steps {
-                        script {
-                          withDockerRegistry(credentialsId: 'dockerhub'){
-                            dir('api-gateway') { 
-                                echo "Building Docker image"
-                                sh 'ls -l target'
-                                sh 'docker build -t maleklabidi/gateway-service:1.0 .'
-                                echo "Pushing Docker image to Docker Hub"
-                                sh '''
-                                    docker push maleklabidi/gateway-service:1.0
-                                '''
-                            }
-                            }
-                        }
-                    }
-                }*/
         stage('Build Docker Images') {
             steps {
                 script {
