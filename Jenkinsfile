@@ -92,12 +92,10 @@ stage('Run Docker Compose') {
 
         }
         
-         post {
-        always {
-           
-            cleanWs()  
-        }
-    }
+          post {         success {             emailext(                 to: 'team@example.com',                 subject: "Stage Success: Build stage completed",                 body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully."             )      
+                                 }         failure {             emailext(                 to: 'team@example.com',                 subject: "Stage Failed: Build stage failed",                 body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Check ${env.BUILD_URL}"             )   
+                                                   }    
+               }
 
 }
  
