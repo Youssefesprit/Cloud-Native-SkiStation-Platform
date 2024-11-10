@@ -18,6 +18,8 @@ pipeline {
         // Specify services as a comma-separated string 
         SERVICES = 'discovery-service,api-gateway,subscription-management-service,skier-management-service' 
     } 
+
+    
     stages { 
         stage('Checkout Code') { 
             steps { 
@@ -45,18 +47,21 @@ pipeline {
             } 
         } 
 
+        
         stage('Run Tests for Specified Service') { 
             steps { 
                 sh 'mvn test -Dtest=tn.esprit.spring.services.SkierServicesImplTest -pl skier-management-service'   
             } 
         } 
 
+        
           stage('SonarQube Analysis') { 
             steps { 
                 sh 'mvn -X sonar:sonar -Dsonar.projectKey=skierManagement -Dsonar.host.url=$SONARQUBE_URL -Dsonar.login=$SONARQUBE_LOGIN' 
             } 
         } 
 
+        
         stage('Build and Deploy to Maven Repository for Specified Services') { 
             steps { 
                 script { 
