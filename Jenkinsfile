@@ -189,8 +189,24 @@ pipeline {
             echo 'Pipline builded successfully'
              emailext(
             to: 'labidi.malek@esprit.tn',
-            subject: "Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: "Good news! The build ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully.\nCheck it out at ${env.BUILD_URL}"
+           subject: "✅ Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """
+            <html>
+                <body>
+                    <h2 style="color: #28a745;">Build Successful! 🎉</h2>
+                    <p>Good news! The build <strong>${env.JOB_NAME} #${env.BUILD_NUMBER}</strong> completed successfully.</p>
+                    <p>Details:</p>
+                    <ul>
+                        <li><strong>Job Name:</strong> ${env.JOB_NAME}</li>
+                        <li><strong>Build Number:</strong> ${env.BUILD_NUMBER}</li>
+                        <li><strong>Status:</strong> <span style="color: #28a745;">Success</span></li>
+                    </ul>
+                    <p>You can review the build details at the following link:</p>
+                    <a href="${env.BUILD_URL}" style="color: #007bff;">View Build</a>
+                </body>
+            </html>
+        """,
+        mimeType: 'text/html'
         )
         }
         failure{
@@ -198,8 +214,24 @@ pipeline {
             echo 'Pipline failed .Please check logs for more information'
              emailext(
             to: 'labidi.malek@esprit.tn',
-            subject: "Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-            body: "The build ${env.JOB_NAME} #${env.BUILD_NUMBER} failed.\nPlease review the details at ${env.BUILD_URL}"
+             subject: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
+        body: """
+            <html>
+                <body>
+                    <h2 style="color: #dc3545;">Build Failed! ❗</h2>
+                    <p>The build <strong>${env.JOB_NAME} #${env.BUILD_NUMBER}</strong> has failed. Please check the logs for more information.</p>
+                    <p>Details:</p>
+                    <ul>
+                        <li><strong>Job Name:</strong> ${env.JOB_NAME}</li>
+                        <li><strong>Build Number:</strong> ${env.BUILD_NUMBER}</li>
+                        <li><strong>Status:</strong> <span style="color: #dc3545;">Failure</span></li>
+                    </ul>
+                    <p>You can review the build details at the following link:</p>
+                    <a href="${env.BUILD_URL}" style="color: #007bff;">View Build</a>
+                </body>
+            </html>
+        """,
+        mimeType: 'text/html'
         )
         }
  
