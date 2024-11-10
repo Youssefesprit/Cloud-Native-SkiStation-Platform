@@ -117,18 +117,40 @@ pipeline {
         sh "docker image prune -f"
         cleanWs()
     }
-    success { 
+     success { 
         emailext( 
             to: 'yousseffarhat818@gmail.com', 
-            subject: "Stage Success: Build stage completed", 
-            body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully."
+            subject: "✅ Stage Success: Build Completed", 
+            body: """
+                <html>
+                    <body style="font-family: Arial, sans-serif; color: #333;">
+                        <h2 style="color: #4CAF50;">✅ Build Stage Success</h2>
+                        <p>The <strong>Build</strong> stage in <strong>${env.JOB_NAME}</strong> <em>#${env.BUILD_NUMBER}</em> has completed successfully.</p>
+                        <p>Great work, team!</p>
+                        <hr style="border: 1px solid #4CAF50;">
+                        <p style="font-size: 12px; color: #888;">This is an automated message from Jenkins.</p>
+                    </body>
+                </html>
+            """,
+            mimeType: 'text/html'
         )
     } 
     failure { 
         emailext( 
             to: 'yousseffarhat818@gmail.com', 
-            subject: "Stage Failed: Build stage failed", 
-            body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Check ${env.BUILD_URL}"
+            subject: "❌ Stage Failed: Build Stage Error", 
+            body: """
+                <html>
+                    <body style="font-family: Arial, sans-serif; color: #333;">
+                        <h2 style="color: #FF5722;">❌ Build Stage Failed</h2>
+                        <p>The <strong>Build</strong> stage in <strong>${env.JOB_NAME}</strong> <em>#${env.BUILD_NUMBER}</em> has failed.</p>
+                        <p>Please check the <a href="${env.BUILD_URL}" style="color: #FF5722;">build details</a> for more information and troubleshooting steps.</p>
+                        <hr style="border: 1px solid #FF5722;">
+                        <p style="font-size: 12px; color: #888;">This is an automated message from Jenkins.</p>
+                    </body>
+                </html>
+            """,
+            mimeType: 'text/html'
         )
     }
 }
