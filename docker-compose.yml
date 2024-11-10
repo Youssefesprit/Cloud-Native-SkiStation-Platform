@@ -3,34 +3,34 @@ version: '3.8'
 services:
 
   # MySQL Database for Skier Service
- # skier-db:
- #    container_name: skier-db
- #    image: mysql:8.0
- #    environment:
- #      MYSQL_DATABASE: skierdb
- #      MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
- #    ports:
- #      - "3308:3306"
- #    volumes:
-  #     - skier_db_data:/var/lib/mysql
-  #   restart: always
-  #   networks:
-  #     - ski-management-network
+  skier-db:
+     container_name: skier-db
+     image: mysql:8.0
+     environment:
+       MYSQL_DATABASE: skierdb
+       MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+     ports:
+       - "3308:3306"
+     volumes:
+       - skier_db_data:/var/lib/mysql
+     restart: always
+     networks:
+       - ski-management-network
 
   # MySQL Database for Subscription Service
-#  subscription-db:
-#   container_name: subscription-db
-#   image: mysql:8.0
-#   environment:
-#     MYSQL_DATABASE: subscriptiondb
-#     MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
-#   ports:
-#     - "3310:3306"
-#   volumes:
-#     - subscription_db_data:/var/lib/mysql
-#   restart: always
-#   networks:
-#     - ski-management-network
+  subscription-db:
+   container_name: subscription-db
+   image: mysql:8.0
+   environment:
+     MYSQL_DATABASE: subscriptiondb
+     MYSQL_ALLOW_EMPTY_PASSWORD: 'yes'
+   ports:
+     - "3310:3306"
+   volumes:
+     - subscription_db_data:/var/lib/mysql
+   restart: always
+   networks:
+     - ski-management-network
 
 
   # Discovery Service
@@ -66,7 +66,7 @@ services:
     ports:
       - "8085:8080"
     depends_on:
-    #  - subscription-db
+      - subscription-db
       - gateway-service
       - discovery-service
     environment:
@@ -85,7 +85,7 @@ services:
    ports:
      - "8088:8080"
    depends_on:
-    # - skier-db
+     - skier-db
      - gateway-service
      - discovery-service
      - subscription-service
@@ -106,8 +106,8 @@ networks:
     driver: bridge
 
 # Volume configuration for database persistence
-#volumes:
-#  skier_db_data:
-#    driver: local
-#  subscription_db_data:
-#    driver: local
+volumes:
+  skier_db_data:
+    driver: local
+  subscription_db_data:
+    driver: local
