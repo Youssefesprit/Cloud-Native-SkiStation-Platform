@@ -23,7 +23,7 @@ public class ApiGatewayApplication {
     @Bean
     public CorsWebFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://192.168.192.131:4200")); // Add your Angular app's origin
+        config.setAllowedOrigins(Arrays.asList("http://localhost:4200", "http://192.168.192.131:4200")); 
         config.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE"));
         config.setAllowedHeaders(Arrays.asList("Authorization", "Content-Type"));
         config.setAllowCredentials(true);
