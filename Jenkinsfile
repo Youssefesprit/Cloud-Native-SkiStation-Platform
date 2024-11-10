@@ -15,15 +15,17 @@ pipeline {
        stage('Compile Stage') {
             steps {
                 // Compile only the specified modules
-                sh 'mvn clean compile'  // Compile skier-management-service
+                sh 'mvn clean compile'
             }
         }
         stage('Test Stage') {
             steps {
                 // Run tests only for the specified services
-                sh 'mvn test -Dtest=tn.esprit.spring.services.PisteServicesImplTest -pl piste-management-service '  // Execute specific tests -DfailIfNoTests=false
+                sh 'mvn test -Dtest=tn.esprit.spring.services.PisteServicesImplTest -pl piste-management-service'
             }
         }
+        
+        // Uncomment the following stage if you want to enable SonarQube analysis
         /*
         stage('MVN SONARQUBE') {
             steps {
@@ -34,68 +36,70 @@ pipeline {
         }
         */ 
   
-
-stage('Deploy to Nexus') {
-    steps {
-        script {
-             def services = ['discovery-service', 'api-gateway', 'piste-management-service']
-            services.each { service ->
-                dir(service) { // Change directory to each service
-                    echo "Deploying ${service} to Nexus"
-                    withCredentials([usernamePassword(credentialsId: 'Nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
-                        sh 'mvn clean deploy -DskipTests -Dnexus.user=$NEXUS_USER -Dnexus.password=$NEXUS_PASS'
+        stage('Deploy to Nexus') {
+            steps {
+                script {
+                    def services = ['discovery-service', 'api-gateway', 'piste-management-service']
+                    services.each { service ->
+                        dir(service) { // Change directory to each service
+                            echo "Deploying ${service} to Nexus"
+                            withCredentials([usernamePassword(credentialsId: 'Nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASS')]) {
+                                sh 'mvn clean deploy -DskipTests -Dnexus.user=$NEXUS_USER -Dnexus.password=$NEXUS_PASS'
+                            }
+                        }
                     }
                 }
             }
         }
-    }
-}
 
-stage('Build and Push Docker Images') {
-    steps {
-        script {
-            def services = ['discovery-service', 'api-gateway', 'piste-management-service']
-            withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
-                services.each { service ->
-                    // Build Docker image with error handling and no cache for better debugging
-                    sh """
-                        docker build --no-cache -t chaimaaa20/${service}:1.0 ./${service} || { echo 'Build failed for ${service}'; exit 1; }
-                    """
+        stage('Build and Push Docker Images') {
+            steps {
+                script {
+                    def services = ['discovery-service', 'api-gateway', 'piste-management-service']
+                    withCredentials([usernamePassword(credentialsId: 'DockerHub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                        services.each { service ->
+                            // Build Docker image with error handling and no cache for better debugging
+                            sh """
+                                docker build --no-cache -t chaimaaa20/${service}:1.0 ./${service} || { echo 'Build failed for ${service}'; exit 1; }
+                            """
  
-                    // Docker login with error handling
-                    sh """
-                        echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin || { echo 'Docker login failed'; exit 1; }
-                    """
+                            // Docker login with error handling
+                            sh """
+                                echo \$DOCKER_PASS | docker login -u \$DOCKER_USER --password-stdin || { echo 'Docker login failed'; exit 1; }
+                            """
  
-                    // Push Docker image with error handling
-                    sh """
-                        docker push chaimaaa20/${service}:1.0 || { echo 'Push failed for ${service}'; exit 1; }
-                    """
+                            // Push Docker image with error handling
+                            sh """
+                                docker push chaimaaa20/${service}:1.0 || { echo 'Push failed for ${service}'; exit 1; }
+                            """
+                        }
+                    }
                 }
             }
         }
-    }
-}
  
- 
-      
-
-
-
-
-stage('Run Docker Compose') {
+        stage('Run Docker Compose') {
             steps {
                 echo 'Starting services with Docker Compose...'
                 sh 'docker compose up -d'
             }
         }
-
+    }
+    
+    post {         
+        success {             
+            emailext(
+                to: 'team@example.com',                 
+                subject: "Stage Success: Build stage completed",                 
+                body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully."             
+            )
+        }         
+        failure {             
+            emailext(
+                to: 'team@example.com',                 
+                subject: "Stage Failed: Build stage failed",                 
+                body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Check ${env.BUILD_URL}"             
+            )
         }
-        
-          post {         success {             emailext(                 to: 'team@example.com',                 subject: "Stage Success: Build stage completed",                 body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} completed successfully."             )      
-                                 }         failure {             emailext(                 to: 'team@example.com',                 subject: "Stage Failed: Build stage failed",                 body: "The 'Build' stage in ${env.JOB_NAME} #${env.BUILD_NUMBER} has failed. Check ${env.BUILD_URL}"             )   
-                                                   }    
-               }
-
+    }
 }
- 
