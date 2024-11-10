@@ -11,7 +11,6 @@ import java.util.List;
 
 @Tag(name = "\uD83D\uDDD3️Registration Management")
 @RestController
-@CrossOrigin(origins = "*")
 @RequestMapping("/registration")
 @RequiredArgsConstructor
 public class RegistrationRestController {
