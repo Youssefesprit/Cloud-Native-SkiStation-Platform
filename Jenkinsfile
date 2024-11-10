@@ -188,7 +188,7 @@ pipeline {
             cleanWs()
             echo 'Pipline builded successfully'
              emailext(
-            to: 'labidi.malek@esprit.tn',
+            to: 'melek.islem105@gmail.com',
            subject: "✅ Build Success: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
         body: """
             <html>
@@ -213,7 +213,7 @@ pipeline {
             cleanWs()
             echo 'Pipline failed .Please check logs for more information'
              emailext(
-            to: 'labidi.malek@esprit.tn',
+            to: 'melek.islem105@gmail.com',
              subject: "❌ Build Failed: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
         body: """
             <html>
