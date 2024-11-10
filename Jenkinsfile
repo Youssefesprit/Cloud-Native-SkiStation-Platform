@@ -4,6 +4,8 @@ pipeline {
         SONARQUBE_URL = 'http://192.168.40.136:9000' 
         SONARQUBE_LOGIN = 'squ_33a2a5023ae268f9761a5df1d601d8cac9c267de'            
     }
+
+    
     stages {
          stage('GIT') {
             steps {
