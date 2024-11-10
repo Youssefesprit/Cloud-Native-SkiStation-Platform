@@ -8,7 +8,8 @@ import tn.esprit.spring.entities.Registration;
 import tn.esprit.spring.services.IRegistrationServices;
 
 import java.util.List;
-@CrossOrigin(allowedOriginPatterns = "*", allowCredentials = "true")
+
+@CrossOrigin("*")
 @Tag(name = "\uD83D\uDDD3️Registration Management")
 @RestController
 @RequestMapping("/registration")
