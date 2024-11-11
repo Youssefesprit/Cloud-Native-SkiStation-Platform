@@ -19,6 +19,8 @@ pipeline {
         SERVICES = 'discovery-service,api-gateway,subscription-management-service,skier-management-service' 
     }     
 
+
+    
     stages { 
         stage('Checkout Code') { 
             steps { 
