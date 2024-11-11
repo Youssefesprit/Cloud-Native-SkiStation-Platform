@@ -6,7 +6,7 @@ pipeline {
          SONARQUBE_LOGIN = 'squ_c94f45eb2303e27808394cfa4282e4844707a3e3'   
         IMAGE_TAG = "${env.BUILD_NUMBER}-${new Date().format('yyyyMMddHHmm')}"
 
-     }
+     }  
     stages {
         stage('Clone Repository') {
             steps {
