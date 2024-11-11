@@ -2,6 +2,7 @@
 
 services:
 
+
   # MySQL Database for Course Service
   # Cette section configure un conteneur pour la base de données MySQL du service "Course".
   course-db:
