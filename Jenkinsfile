@@ -5,6 +5,7 @@ pipeline {
         SONARQUBE_LOGIN = 'squ_abea769e87a80301e1f974de4d868418a752a917'            
     }
 
+
     
     stages {
          stage('GIT') {
