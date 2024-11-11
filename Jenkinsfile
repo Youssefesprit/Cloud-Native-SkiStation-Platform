@@ -4,6 +4,7 @@ def services = [
     'instructor-management-service',
     'course-management-service'
 ]
+
 pipeline {
     agent any
     environment {
