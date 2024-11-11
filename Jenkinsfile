@@ -21,6 +21,11 @@ pipeline {
                 sh 'mvn compile'
             }
         }
+          stage('Run Tests') {
+           steps {
+               sh 'mvn test -Dtest=tn.esprit.spring.services.SkierServicesImplTest -pl skier-management-service'  // Run specific tests
+           }
+       }
         stage('MVN SONARQUBE') {
             steps {
                script {
