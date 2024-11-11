@@ -1,5 +1,8 @@
 version: '3.8'
 
+
+
+
 services:
   # MySQL Database for Skier Service
   # Cette section configure un conteneur pour la base de données MySQL du service "Instructor".
