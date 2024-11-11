@@ -2,7 +2,7 @@ pipeline {
     agent any 
     environment {
         SONARQUBE_URL = 'http://192.168.40.136:9000' 
-        SONARQUBE_LOGIN = 'squ_33a2a5023ae268f9761a5df1d601d8cac9c267de'            
+        SONARQUBE_LOGIN = 'squ_abea769e87a80301e1f974de4d868418a752a917'            
     }
 
     
@@ -28,7 +28,7 @@ pipeline {
         }
         
         // Uncomment the following stage if you want to enable SonarQube analysis
-        /*
+     
         stage('MVN SONARQUBE') {
             steps {
                 withSonarQubeEnv('sonarqube') {  
@@ -36,7 +36,7 @@ pipeline {
                 }
             }
         }
-        */ 
+     
   
         stage('Deploy to Nexus') {
             steps {
