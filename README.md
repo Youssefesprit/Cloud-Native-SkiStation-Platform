@@ -13,14 +13,33 @@ The microservices themselves are developed in separate repositories, while this 
 
 The SkiStation platform is composed of the following microservices:  
 
-1. **Course Management Service**  
-2. **Instructor Management Service**  
-3. **Piste Management Service**  
-4. **Registration Management Service**  
-5. **Skier Management Service**  
-6. **Subscription Management Service**  
+- **Course Management Service** – Handles ski courses creation, updates, and assignments
+- **Instructor Management Service** – Manages ski instructors and their associations with courses  
+- **Piste Management Service** – Maintains piste (ski slope) information and conditions  
+- **Registration Management Service** – Handles skier registrations for courses and events  
+- **Skier Management Service** – Manages skier profiles and related information  
+- **Subscription Management Service** – Handles skier subscriptions and memberships
 
 Each service runs as an independent **Docker container**, allowing modularity, scalability, and ease of deployment
+
+---
+
+## 🔎 Service Discovery & API Gateway  
+
+- **Eureka Discovery Server**  
+  - Central registry where all microservices register themselves  
+  - Enables dynamic service lookup instead of hardcoding service URLs  
+  - Provides resilience and load balancing across services  
+
+- **Spring Cloud API Gateway**  
+  - Acts as the single entry point for all client requests  
+  - Routes requests to the corresponding microservice via Eureka  
+  - Supports features like authentication, logging, and request filtering  
+
+**Architecture Flow:**  
+1. Each microservice registers with **Eureka Discovery Server**  
+2. Clients send requests through the **API Gateway**  
+3. The Gateway routes requests dynamically to the appropriate service  
 
 ---
 
