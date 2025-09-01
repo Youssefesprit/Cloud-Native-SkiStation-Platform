@@ -58,7 +58,7 @@ Each service runs as an independent **Docker container**, allowing modularity, s
 
 ### Clone the Repository  
 ```bash
-git clone [https://github.com/Youssefesprit/Cloud-Native-SkiStation-Platform.git](https://github.com/Youssefesprit/Cloud-Native-SkiStation-Platform)
+git clone https://github.com/Youssefesprit/Cloud-Native-SkiStation-Platform.git
 cd Cloud-Native-SkiStation-Platform
 ```
 
